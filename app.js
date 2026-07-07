@@ -10,9 +10,10 @@ const PROVINCE_PROFILE_VERSION = 2;
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpqdHJrbmdidnh3aWlwZ3VqcWNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM0MzE5NDMsImV4cCI6MjA5OTAwNzk0M30.KX4mmHhGcl1iu82NnfZTvbM42N2y4N6Qmev1JfpMaaI";
 const SUPABASE_CONFIG_ID = "global";
 
-const supabaseClient = window.supabase?.createClient
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
   const TRANSLATIONS = {
     en: {
