@@ -1607,9 +1607,16 @@ h3, h4 { letter-spacing: -0.025em; }
   background: linear-gradient(to top, rgba(5,31,20,.16), transparent);
 }
 .hero__watermark {
-  position: absolute; z-index: -1; width: 690px; height: 690px; object-fit: contain;
-  right: max(-65px, calc((100vw - var(--page-width)) / 2 - 120px)); top: -40px;
-  opacity: .22; filter: brightness(4) contrast(.5); mix-blend-mode: screen;
+  position: absolute;
+  z-index: -1;
+  right: clamp(-120px, -5vw, -40px);
+  top: -84px;
+  width: min(52vw, 650px);
+  height: min(52vw, 650px);
+  object-fit: contain;
+  opacity: .22;
+  filter: none;
+  mix-blend-mode: normal;
 }
 .hero__content { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(360px,.75fr); gap: 80px; align-items: center; min-height: 610px; padding-block: 80px; }
 .hero__copy { position: relative; z-index: 1; }

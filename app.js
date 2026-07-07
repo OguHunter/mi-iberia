@@ -6,7 +6,7 @@
 const STORAGE_KEY_V1 = "mi-iberia-electoral-portal-legacy";
 const PROVINCE_PROFILE_VERSION = 2;
 
-  const SUPABASE_URL = "https://btayswfknmifedbstkfl.supabase.co";
+  const SUPABASE_URL = "https://zjtrkngbvxwiipgujqce.supabase.coo";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0YXlzd2Zrbm1pZmVkYnN0a2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4ODkyODEsImV4cCI6MjA5ODQ2NTI4MX0.XP2F68G792B6Jgz6xuZZBV3z3Kx7duxNkFBbcmA1Rws";
 const SUPABASE_CONFIG_ID = "public-portal";
 
