@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive Iberian election simulator" />
-  <title>Iberian Election Simulator</title>
+  <meta name="description" content="Mi Iberia electoral portal, election simulator and parliamentary archive" />
+  <title>Mi Iberia Electoral Portal</title>
   <link rel="icon" type="image/png" href="iberia-crest.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#summary" aria-label="Iberian Election Simulator">
+    <a class="brand" href="#home" aria-label="Mi Iberia Electoral Portal">
       <span class="brand__mark"><img src="iberia-crest.png" alt="" /></span>
       <span class="brand__copy">
-        <strong data-i18n="appTitle">Iberian Election Simulator</strong>
+        <strong>Mi Iberia</strong>
         <small id="scenarioNameLabel">Iberian election</small>
       </span>
     </a>
 
     <nav class="topbar__nav" aria-label="Main navigation">
-      <a href="#summary" data-i18n="navSummary">Summary</a>
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#simulator" data-i18n="navSimulator">Simulator</a>
+      <a href="#results" data-i18n="navResults">Results</a>
       <a href="#congress" data-i18n="navCongress">Congress</a>
       <a href="#nations" data-i18n="navNations">Nations</a>
-      <a href="#provinces" data-i18n="navProvinces">Provinces</a>
       <a href="#senate" data-i18n="navSenate">Senate</a>
     </nav>
 
@@ -40,67 +41,107 @@
     </div>
   </header>
 
-  <main class="page-shell">
-    <section id="summary" class="hero">
+  <main>
+    <section id="home" class="hero">
       <img class="hero__watermark" src="iberia-watermark.png" alt="" aria-hidden="true" />
-      <div class="hero__copy">
-        <span class="eyebrow" data-i18n="simulatorEyebrow">ELECTION SIMULATOR</span>
-        <h1 data-i18n="heroTitle">From one Iberia-wide result to every province, parliament and senator.</h1>
-        <p data-i18n="heroText">
-          Enter the result of each electoral list, then explore its territorial distribution and the internal balance between member parties.
-        </p>
-      </div>
+      <div class="hero__content page-shell">
+        <div class="hero__copy">
+          <span class="eyebrow" data-i18n="officialPortal">OFFICIAL ELECTORAL PORTAL</span>
+          <h1 data-i18n="portalHeroTitle">Elections, representation and government across Iberia.</h1>
+          <p data-i18n="portalHeroText">Explore parliamentary results, test coalitions and simulate how an Iberia-wide vote becomes seats in every institution.</p>
+          <div class="hero__actions">
+            <a class="button button--primary button--large" href="#simulator" data-i18n="openSimulator">Open simulator</a>
+            <a class="button button--light button--large" href="#results" data-i18n="viewArchive">View election archive</a>
+          </div>
+        </div>
 
-      <div class="summary-grid">
-        <article class="summary-card">
-          <span data-i18n="congress">Congress</span>
-          <strong>360</strong>
-          <small data-i18n="congressSummary">200 Iberia-wide · 160 provincial</small>
-        </article>
-        <article class="summary-card">
-          <span data-i18n="senate">Senate</span>
-          <strong>55</strong>
-          <small data-i18n="senateSummary">47 direct · 8 institutional</small>
-        </article>
-        <article class="summary-card">
-          <span data-i18n="administrativeNations">Administrative Nations</span>
-          <strong>4</strong>
-          <small data-i18n="nationsSummary">Portugal, Catalonia, Basque Country and Spain</small>
-        </article>
-        <article class="summary-card">
-          <span data-i18n="provinces">Provinces</span>
-          <strong>34</strong>
-          <small data-i18n="provincesSummary">Provincial second-vote constituencies</small>
-        </article>
+        <div class="hero__panel glass-panel">
+          <span class="eyebrow" data-i18n="currentSimulation">CURRENT SIMULATION</span>
+          <div class="hero-result">
+            <div>
+              <small data-i18n="leadingList">Leading list</small>
+              <strong id="heroLargestList">—</strong>
+            </div>
+            <div>
+              <small data-i18n="largestSeatTotal">Largest seat total</small>
+              <strong id="heroLargestSeats">—</strong>
+            </div>
+          </div>
+          <div class="hero-majority" id="heroMajorityStatus">—</div>
+          <div class="hero-mini-grid">
+            <div><strong>360</strong><span data-i18n="congress">Congress</span></div>
+            <div><strong>55</strong><span data-i18n="senate">Senate</span></div>
+            <div><strong>4</strong><span data-i18n="administrativeNations">Administrative Nations</span></div>
+            <div><strong>34</strong><span data-i18n="provinces">Provinces</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="workspace-grid">
-      <article class="card input-card">
-        <div class="card__header">
+    <section class="public-strip">
+      <div class="page-shell public-strip__inner">
+        <div>
+          <img src="iberia-crest.png" alt="" />
+          <p data-i18n="publicTransparencyText">Mi Iberia provides public access to election results, institutional composition and a transparent simulation of the Iberian electoral process.</p>
+        </div>
+        <a href="#results" class="text-link" data-i18n="consultRecord">Consult the democratic record →</a>
+      </div>
+    </section>
+
+    <div class="page-shell page-shell--main">
+      <section id="simulator" class="section-block section-block--first">
+        <div class="section-heading section-heading--split">
           <div>
-            <span class="eyebrow" data-i18n="mainInput">MAIN INPUT</span>
-            <h2 data-i18n="electoralLists">Electoral lists</h2>
-            <p data-i18n="inputHint">These percentages fix the final Iberia-wide result of each list.</p>
+            <span class="eyebrow" data-i18n="simulatorEyebrow">ELECTION SIMULATOR</span>
+            <h2 data-i18n="simulatorTitle">Build an Iberia-wide election</h2>
+            <p data-i18n="simulatorText">Enter the result of each electoral list and the portal calculates Congress, provincial representation, nation parliaments and the Senate.</p>
           </div>
-          <button id="addListBtn" class="button button--soft" data-i18n="addList">＋ Add list</button>
+          <div class="institution-pills">
+            <span><strong>200</strong> <small data-i18n="iberiaWide">Iberia-wide</small></span>
+            <span><strong>160</strong> <small data-i18n="provincial">Provincial</small></span>
+            <span><strong>181</strong> <small data-i18n="majority">Majority</small></span>
+          </div>
         </div>
 
-        <div id="listInputContainer" class="list-inputs"></div>
+        <div class="workspace-grid">
+          <article class="card input-card">
+            <div class="card__header">
+              <div>
+                <span class="eyebrow" data-i18n="mainInput">MAIN INPUT</span>
+                <h3 data-i18n="electoralLists">Electoral lists</h3>
+                <p data-i18n="inputHint">These percentages fix the final Iberia-wide result of each list.</p>
+              </div>
+              <button id="addListBtn" class="button button--soft button--small" data-i18n="addList">＋ Add list</button>
+            </div>
 
-        <div class="total-panel">
-          <div class="total-panel__line">
-            <span data-i18n="enteredTotal">Entered total</span>
-            <strong id="enteredTotalValue">100.00%</strong>
-          </div>
-          <div class="progress"><div id="enteredTotalBar" class="progress__bar"></div></div>
-          <p id="enteredTotalMessage" class="status-message"></p>
-          <button id="normaliseBtn" class="button button--ghost button--small" data-i18n="normalise">Normalise to 100%</button>
+            <div id="listInputContainer" class="list-inputs"></div>
+
+            <div class="total-panel">
+              <div class="total-panel__line">
+                <span data-i18n="enteredTotal">Entered total</span>
+                <strong id="enteredTotalValue">100.00%</strong>
+              </div>
+              <div class="progress"><div id="enteredTotalBar" class="progress__bar"></div></div>
+              <p id="enteredTotalMessage" class="status-message"></p>
+              <button id="normaliseBtn" class="button button--ghost button--small" data-i18n="normalise">Normalise to 100%</button>
+            </div>
+          </article>
+
+          <article class="card simulator-summary-card">
+            <span class="eyebrow" data-i18n="instantOverview">INSTANT OVERVIEW</span>
+            <h3 data-i18n="whatThisCalculates">What this simulation calculates</h3>
+            <div class="calculation-list">
+              <div><span>01</span><p><strong data-i18n="iberianCongress">Iberian Congress</strong><small data-i18n="congressSummary">200 Iberia-wide · 160 provincial</small></p></div>
+              <div><span>02</span><p><strong data-i18n="nationalParliaments">Administrative Nation parliaments</strong><small data-i18n="parliamentHint">D’Hondt is applied to each nation’s aggregate provincial vote.</small></p></div>
+              <div><span>03</span><p><strong data-i18n="iberianSenate">Iberian Senate</strong><small data-i18n="senateSummary">47 direct · 8 institutional</small></p></div>
+              <div><span>04</span><p><strong data-i18n="allProvinces">All provinces</strong><small data-i18n="provinceHint">Filter, search and switch between percentages, simulated votes and seats.</small></p></div>
+            </div>
+          </article>
         </div>
-      </article>
+      </section>
 
-      <article id="congress" class="card congress-card">
-        <div class="card__header">
+      <section id="congress" class="section-block">
+        <div class="section-heading section-heading--split">
           <div>
             <span class="eyebrow" data-i18n="lowerHouse">LOWER HOUSE</span>
             <h2 data-i18n="iberianCongress">Iberian Congress</h2>
@@ -112,213 +153,261 @@
           </div>
         </div>
 
-        <div class="metric-pills">
-          <span><strong>200</strong> <span data-i18n="slThreshold">Sainte-Laguë · 5% threshold</span></span>
-          <span><strong>160</strong> <span data-i18n="dhondtNoThreshold">Provincial D’Hondt · no threshold</span></span>
-          <span><strong>181</strong> <span data-i18n="absoluteMajority">absolute majority</span></span>
-        </div>
-
-        <div id="voteBars" class="vote-bars"></div>
-
-        <div class="view-toolbar">
-          <span data-i18n="view">View</span>
-          <div class="segmented" role="group" aria-label="Congress view">
-            <button class="segmented__button is-active" data-congress-level="lists" data-i18n="lists">Lists</button>
-            <button class="segmented__button" data-congress-level="members" data-i18n="memberParties">Member parties</button>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead id="congressTableHead"></thead>
-            <tbody id="congressTableBody"></tbody>
-            <tfoot id="congressTableFoot"></tfoot>
-          </table>
-        </div>
-
-        <div class="seat-composition">
-          <div class="seat-composition__header">
-            <strong data-i18n="seatComposition">Seat composition</strong>
-            <span data-i18n="majorityLine">Majority line: 181</span>
-          </div>
-          <div id="congressSeatBar" class="stacked-bar"></div>
-          <span class="majority-marker" aria-hidden="true"></span>
-        </div>
-      </article>
-    </section>
-
-    <section id="nations" class="section-block">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow" data-i18n="territories">TERRITORIES</span>
-          <h2 data-i18n="administrativeNations">Administrative Nations</h2>
-          <p data-i18n="nationCardsHint">Open a nation to see its aggregate vote, parliament, Senate and provinces.</p>
-        </div>
-      </div>
-      <div id="nationCards" class="nation-grid"></div>
-    </section>
-
-    <section class="section-block">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow" data-i18n="territorialOrigin">TERRITORIAL ORIGIN</span>
-          <h2 data-i18n="provincialCongressSeats">The 160 provincial Congress seats</h2>
-          <p data-i18n="territorialTableHint">These figures are the sum of the seats already awarded in each province.</p>
-        </div>
-      </div>
-      <article class="card">
-        <div class="view-toolbar">
-          <span data-i18n="view">View</span>
-          <div class="segmented">
-            <button class="segmented__button is-active" data-territorial-level="lists" data-i18n="lists">Lists</button>
-            <button class="segmented__button" data-territorial-level="members" data-i18n="memberParties">Member parties</button>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead id="territorialTableHead"></thead>
-            <tbody id="territorialTableBody"></tbody>
-            <tfoot id="territorialTableFoot"></tfoot>
-          </table>
-        </div>
-      </article>
-    </section>
-
-    <section id="provinces" class="section-block">
-      <div class="section-heading section-heading--split">
-        <div>
-          <span class="eyebrow" data-i18n="fullDetail">FULL DETAIL</span>
-          <h2 data-i18n="allProvinces">All provinces</h2>
-          <p id="provinceSectionHint" data-i18n="provinceHint">Filter, search and switch between percentages, simulated votes and seats.</p>
-        </div>
-
-        <div class="province-controls">
-          <label class="field field--search">
-            <span data-i18n="search">Search</span>
-            <input id="provinceSearch" type="search" data-i18n-placeholder="provincePlaceholder" placeholder="Province..." />
-          </label>
-          <label class="field field--select">
-            <span data-i18n="nation">Nation</span>
-            <select id="provinceNationFilter"></select>
-          </label>
-          <label class="field field--select">
-            <span data-i18n="allianceFilter">Alliance</span>
-            <select id="provinceListFilter"></select>
-          </label>
-          <div class="control-stack">
-            <span data-i18n="metric">Metric</span>
-            <div class="segmented">
-              <button class="segmented__button is-active" data-province-metric="percent" data-i18n="percentage">Percentage</button>
-              <button class="segmented__button" data-province-metric="votes" data-i18n="votes">Votes</button>
-              <button class="segmented__button" data-province-metric="seats" data-i18n="seats">Seats</button>
+        <article class="card chamber-card">
+          <div class="chamber-toolbar">
+            <div class="segmented" role="group" aria-label="Congress view">
+              <button class="segmented__button is-active" data-congress-level="lists" data-i18n="lists">Lists</button>
+              <button class="segmented__button" data-congress-level="members" data-i18n="memberParties">Member parties</button>
             </div>
+            <span class="majority-key"><i></i><span data-i18n="majorityLine">Majority line: 181</span></span>
           </div>
-          <div class="control-stack">
-            <span data-i18n="level">Level</span>
-            <div class="segmented">
-              <button class="segmented__button is-active" data-province-level="lists" data-i18n="lists">Lists</button>
-              <button class="segmented__button" data-province-level="members" data-i18n="members">Members</button>
+
+          <div class="chamber-layout">
+            <div class="chamber-visual">
+              <svg id="congressHemicycle" class="hemicycle" viewBox="0 0 640 470" role="img" aria-label="Iberian Congress composition"></svg>
+              <div id="congressHemicycleLegend" class="chamber-legend"></div>
             </div>
+
+            <aside class="coalition-panel">
+              <span class="eyebrow" data-i18n="governmentSimulator">GOVERNMENT SIMULATOR</span>
+              <h3 data-i18n="buildMajority">Build a governing majority</h3>
+              <p data-i18n="governmentSimulatorHint">Select lists to test whether they reach the 181-seat majority.</p>
+              <div id="congressCoalitionOptions" class="coalition-options"></div>
+              <div id="congressCoalitionStatus" class="coalition-status"></div>
+              <button id="clearCongressCoalition" class="button button--ghost button--small" data-i18n="clearSelection">Clear selection</button>
+            </aside>
+          </div>
+
+          <details class="data-disclosure">
+            <summary data-i18n="openDetailedResults">Open detailed results</summary>
+            <div class="data-disclosure__content">
+              <div id="voteBars" class="vote-bars"></div>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead id="congressTableHead"></thead>
+                  <tbody id="congressTableBody"></tbody>
+                  <tfoot id="congressTableFoot"></tfoot>
+                </table>
+              </div>
+              <div class="seat-composition">
+                <div class="seat-composition__header">
+                  <strong data-i18n="seatComposition">Seat composition</strong>
+                  <span data-i18n="majorityLine">Majority line: 181</span>
+                </div>
+                <div id="congressSeatBar" class="stacked-bar"></div>
+                <span class="majority-marker" aria-hidden="true"></span>
+              </div>
+            </div>
+          </details>
+        </article>
+      </section>
+
+      <section id="results" class="section-block results-section">
+        <div class="section-heading section-heading--split">
+          <div>
+            <span class="eyebrow" data-i18n="democraticRecord">DEMOCRATIC RECORD</span>
+            <h2 data-i18n="previousElections">Previous election results</h2>
+            <p data-i18n="archiveHint">Consult every published Iberian election, its vote totals, parliamentary composition and possible governing majorities.</p>
+          </div>
+          <span class="archive-count" id="archiveCount">0</span>
+        </div>
+        <div id="electionArchive" class="archive-grid"></div>
+        <article id="archiveEmpty" class="empty-state card">
+          <img src="iberia-crest.png" alt="" />
+          <h3 data-i18n="noPublishedElections">No published elections yet</h3>
+          <p data-i18n="noPublishedElectionsHint">Administrators can publish the current simulation as a permanent historical result.</p>
+        </article>
+      </section>
+
+      <section id="nations" class="section-block">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="territories">TERRITORIES</span>
+            <h2 data-i18n="administrativeNations">Administrative Nations</h2>
+            <p data-i18n="nationCardsHint">Open a nation to see its aggregate vote, parliament, Senate and provinces.</p>
           </div>
         </div>
-      </div>
+        <div id="nationCards" class="nation-grid"></div>
+      </section>
 
-      <article class="card province-table-card">
-        <div class="table-wrap table-wrap--large">
-          <table class="data-table data-table--sticky">
-            <thead id="provinceTableHead"></thead>
-            <tbody id="provinceTableBody"></tbody>
-          </table>
-        </div>
-      </article>
-    </section>
-
-    <section class="section-block">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow" data-i18n="territorialInstitutions">TERRITORIAL INSTITUTIONS</span>
-          <h2 data-i18n="nationalParliaments">Administrative Nation parliaments</h2>
-          <p data-i18n="parliamentHint">D’Hondt is applied to each nation’s aggregate provincial vote.</p>
-        </div>
-      </div>
-
-      <article class="card">
-        <div id="parliamentTabs" class="tab-list"></div>
-        <div class="view-toolbar view-toolbar--inside">
-          <span data-i18n="view">View</span>
-          <div class="segmented">
-            <button class="segmented__button is-active" data-parliament-level="lists" data-i18n="lists">Lists</button>
-            <button class="segmented__button" data-parliament-level="members" data-i18n="memberParties">Member parties</button>
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="territorialOrigin">TERRITORIAL ORIGIN</span>
+            <h2 data-i18n="provincialCongressSeats">The 160 provincial Congress seats</h2>
+            <p data-i18n="territorialTableHint">These figures are the sum of the seats already awarded in each province.</p>
           </div>
         </div>
-        <div id="parliamentDetail" class="institution-detail"></div>
-      </article>
-    </section>
-
-    <section id="senate" class="section-block">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow" data-i18n="territorialChamber">TERRITORIAL CHAMBER</span>
-          <h2 data-i18n="iberianSenate">Iberian Senate</h2>
-          <p data-i18n="senateHint">The 47 direct seats come from nation-level Sainte-Laguë; eight institutional seats remain available for roleplay.</p>
-        </div>
-      </div>
-
-      <div class="senate-grid">
         <article class="card">
-          <div class="card__header">
-            <div>
-              <h3 data-i18n="directSenators">Directly elected senators</h3>
-              <p data-i18n="directSenatorBreakdown">Portugal 12 · Catalonia 11 · Basque Country 10 · Spain 14</p>
-            </div>
-            <div class="seat-badge seat-badge--small">
-              <strong>47</strong>
-              <span data-i18n="direct">direct</span>
-            </div>
-          </div>
-
           <div class="view-toolbar">
             <span data-i18n="view">View</span>
+            <div class="segmented">
+              <button class="segmented__button is-active" data-territorial-level="lists" data-i18n="lists">Lists</button>
+              <button class="segmented__button" data-territorial-level="members" data-i18n="memberParties">Member parties</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead id="territorialTableHead"></thead>
+              <tbody id="territorialTableBody"></tbody>
+              <tfoot id="territorialTableFoot"></tfoot>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="provinces" class="section-block">
+        <div class="section-heading section-heading--split">
+          <div>
+            <span class="eyebrow" data-i18n="fullDetail">FULL DETAIL</span>
+            <h2 data-i18n="allProvinces">All provinces</h2>
+            <p id="provinceSectionHint" data-i18n="provinceHint">Filter, search and switch between percentages, simulated votes and seats.</p>
+          </div>
+
+          <div class="province-controls">
+            <label class="field field--search">
+              <span data-i18n="search">Search</span>
+              <input id="provinceSearch" type="search" data-i18n-placeholder="provincePlaceholder" placeholder="Province..." />
+            </label>
+            <label class="field field--select">
+              <span data-i18n="nation">Nation</span>
+              <select id="provinceNationFilter"></select>
+            </label>
+            <label class="field field--select">
+              <span data-i18n="allianceFilter">Alliance</span>
+              <select id="provinceListFilter"></select>
+            </label>
+            <div class="control-stack">
+              <span data-i18n="metric">Metric</span>
+              <div class="segmented">
+                <button class="segmented__button is-active" data-province-metric="percent" data-i18n="percentage">Percentage</button>
+                <button class="segmented__button" data-province-metric="votes" data-i18n="votes">Votes</button>
+                <button class="segmented__button" data-province-metric="seats" data-i18n="seats">Seats</button>
+              </div>
+            </div>
+            <div class="control-stack">
+              <span data-i18n="level">Level</span>
+              <div class="segmented">
+                <button class="segmented__button is-active" data-province-level="lists" data-i18n="lists">Lists</button>
+                <button class="segmented__button" data-province-level="members" data-i18n="members">Members</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <article class="card province-table-card">
+          <div class="table-wrap table-wrap--large">
+            <table class="data-table data-table--sticky">
+              <thead id="provinceTableHead"></thead>
+              <tbody id="provinceTableBody"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="territorialInstitutions">TERRITORIAL INSTITUTIONS</span>
+            <h2 data-i18n="nationalParliaments">Administrative Nation parliaments</h2>
+            <p data-i18n="parliamentHint">D’Hondt is applied to each nation’s aggregate provincial vote.</p>
+          </div>
+        </div>
+
+        <article class="card">
+          <div id="parliamentTabs" class="tab-list"></div>
+          <div class="view-toolbar view-toolbar--inside">
+            <span data-i18n="view">View</span>
+            <div class="segmented">
+              <button class="segmented__button is-active" data-parliament-level="lists" data-i18n="lists">Lists</button>
+              <button class="segmented__button" data-parliament-level="members" data-i18n="memberParties">Member parties</button>
+            </div>
+          </div>
+          <div id="parliamentDetail" class="institution-detail"></div>
+        </article>
+      </section>
+
+      <section id="senate" class="section-block">
+        <div class="section-heading section-heading--split">
+          <div>
+            <span class="eyebrow" data-i18n="territorialChamber">TERRITORIAL CHAMBER</span>
+            <h2 data-i18n="iberianSenate">Iberian Senate</h2>
+            <p data-i18n="senateHint">The 47 direct seats come from nation-level Sainte-Laguë; eight institutional seats remain available for roleplay.</p>
+          </div>
+          <div class="seat-badge">
+            <strong>55</strong>
+            <span data-i18n="seats">seats</span>
+          </div>
+        </div>
+
+        <article class="card chamber-card chamber-card--senate">
+          <div class="chamber-toolbar">
             <div class="segmented">
               <button class="segmented__button is-active" data-senate-level="lists" data-i18n="lists">Lists</button>
               <button class="segmented__button" data-senate-level="members" data-i18n="memberParties">Member parties</button>
             </div>
+            <span class="institutional-key"><i></i><span data-i18n="institutionalSeatsKey">Gold ring: institutional seat</span></span>
+          </div>
+          <div class="senate-visual-grid senate-visual-grid--westminster">
+            <div class="senate-chamber-wrap">
+              <svg id="senateHemicycle" class="westminster-chamber" viewBox="0 0 700 500" role="img" aria-label="Iberian Senate composition"></svg>
+              <div id="senateHemicycleLegend" class="chamber-legend"></div>
+            </div>
+            <div class="senate-side-stack">
+              <aside class="institutional-card">
+                <span class="eyebrow" data-i18n="roleplay">ROLEPLAY</span>
+                <h3 data-i18n="institutionalSenators">Institutional senators</h3>
+                <p data-i18n="institutionalHint">Two are sent by each Administrative Nation. They are assigned manually in admin mode.</p>
+                <div id="institutionalSenatorsPublic" class="institutional-list"></div>
+                <div class="institutional-total">
+                  <span data-i18n="assigned">Assigned</span>
+                  <strong id="institutionalAssignedCount">0 / 8</strong>
+                </div>
+              </aside>
+
+              <aside class="coalition-panel coalition-panel--senate">
+                <span class="eyebrow" data-i18n="governmentSimulator">GOVERNMENT SIMULATOR</span>
+                <h3 data-i18n="senateMajorityBuilder">Build a Senate majority</h3>
+                <label class="field field--compact">
+                  <span data-i18n="majorityRequirement">Majority requirement</span>
+                  <select id="senateMajorityRule" data-senate-majority-rule>
+                    <option value="1/2">1/2</option>
+                    <option value="3/5">3/5</option>
+                    <option value="2/3">2/3</option>
+                  </select>
+                </label>
+                <div id="senateCoalitionOptions" class="coalition-options"></div>
+                <div id="senateCoalitionStatus" class="coalition-status"></div>
+                <button id="clearSenateCoalition" class="button button--ghost button--small" type="button" data-i18n="clearSelection">Clear selection</button>
+              </aside>
+            </div>
           </div>
 
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead id="senateTableHead"></thead>
-              <tbody id="senateTableBody"></tbody>
-              <tfoot id="senateTableFoot"></tfoot>
-            </table>
-          </div>
+          <details class="data-disclosure">
+            <summary data-i18n="openDetailedResults">Open detailed results</summary>
+            <div class="data-disclosure__content">
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead id="senateTableHead"></thead>
+                  <tbody id="senateTableBody"></tbody>
+                  <tfoot id="senateTableFoot"></tfoot>
+                </table>
+              </div>
+            </div>
+          </details>
         </article>
-
-        <article class="card institutional-card">
-          <div>
-            <span class="eyebrow" data-i18n="roleplay">ROLEPLAY</span>
-            <h3 data-i18n="institutionalSenators">Institutional senators</h3>
-            <p data-i18n="institutionalHint">Two are sent by each Administrative Nation. They are assigned manually in admin mode.</p>
-          </div>
-          <div id="institutionalSenatorsPublic" class="institutional-list"></div>
-          <div class="institutional-total">
-            <span data-i18n="assigned">Assigned</span>
-            <strong id="institutionalAssignedCount">0 / 8</strong>
-          </div>
-        </article>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer class="page-footer">
-    <div class="footer-brand">
-      <img src="iberia-crest.png" alt="" />
-      <div>
-        <strong data-i18n="appTitle">Iberian Election Simulator</strong>
-        <span data-i18n="localApp">Made by Villa</span>
+    <div class="page-shell page-footer__inner">
+      <div class="footer-brand">
+        <img src="iberia-crest.png" alt="" />
+        <div><strong>Mi Iberia</strong><span data-i18n="localApp">Made by Villa</span></div>
       </div>
+      <button id="resetAllBtn" class="button button--ghost button--small" data-i18n="resetSimulation">Reset simulation</button>
     </div>
-    <button id="resetAllBtn" class="button button--ghost button--small" data-i18n="resetSimulation">Reset simulation</button>
   </footer>
 
   <!-- Add electoral list -->
@@ -329,29 +418,11 @@
       <span class="eyebrow" data-i18n="newList">NEW LIST</span>
       <h2 data-i18n="addElectoralList">Add electoral list</h2>
       <form id="addListForm" class="form-grid">
-        <label>
-          <span data-i18n="fullName">Full name</span>
-          <input name="name" required placeholder="Electoral list" />
-        </label>
-        <label>
-          <span data-i18n="abbreviation">Abbreviation</span>
-          <input name="shortName" required maxlength="14" placeholder="LIST" />
-        </label>
-        <label>
-          <span data-i18n="colour">Colour</span>
-          <input name="color" type="color" value="#28536B" />
-        </label>
-        <label>
-          <span data-i18n="initialResult">Initial result</span>
-          <span class="input-with-suffix">
-            <input name="vote" type="number" min="0" max="100" step="0.1" value="0" />
-            <small>%</small>
-          </span>
-        </label>
-        <div class="modal__actions">
-          <button type="button" class="button button--ghost" data-close-modal="addListModal" data-i18n="cancel">Cancel</button>
-          <button type="submit" class="button button--primary" data-i18n="addList">Add list</button>
-        </div>
+        <label><span data-i18n="fullName">Full name</span><input name="name" required placeholder="Electoral list" /></label>
+        <label><span data-i18n="abbreviation">Abbreviation</span><input name="shortName" required maxlength="14" placeholder="LIST" /></label>
+        <label><span data-i18n="colour">Colour</span><input name="color" type="color" value="#145A3D" /></label>
+        <label><span data-i18n="initialResult">Initial result</span><span class="input-with-suffix"><input name="vote" type="number" min="0" max="100" step="0.1" value="0" /><small>%</small></span></label>
+        <div class="modal__actions"><button type="button" class="button button--ghost" data-close-modal="addListModal" data-i18n="cancel">Cancel</button><button type="submit" class="button button--primary" data-i18n="addList">Add list</button></div>
       </form>
     </div>
   </div>
@@ -365,26 +436,11 @@
       <h2 id="addMemberModalTitle" data-i18n="addMemberParty">Add member party</h2>
       <form id="addMemberForm" class="form-grid">
         <input type="hidden" name="listId" />
-        <label>
-          <span data-i18n="fullName">Full name</span>
-          <input name="name" required placeholder="Member party" />
-        </label>
-        <label>
-          <span data-i18n="abbreviation">Abbreviation</span>
-          <input name="shortName" required maxlength="14" placeholder="MEMBER" />
-        </label>
-        <label>
-          <span data-i18n="colour">Colour</span>
-          <input name="color" type="color" value="#5A7A8C" />
-        </label>
-        <label>
-          <span data-i18n="organisationalWeight">Organisational weight</span>
-          <input name="weight" type="number" min="0.01" step="0.1" value="10" />
-        </label>
-        <div class="modal__actions">
-          <button type="button" class="button button--ghost" data-close-modal="addMemberModal" data-i18n="cancel">Cancel</button>
-          <button type="submit" class="button button--primary" data-i18n="addMemberParty">Add member party</button>
-        </div>
+        <label><span data-i18n="fullName">Full name</span><input name="name" required placeholder="Member party" /></label>
+        <label><span data-i18n="abbreviation">Abbreviation</span><input name="shortName" required maxlength="14" placeholder="MEMBER" /></label>
+        <label><span data-i18n="colour">Colour</span><input name="color" type="color" value="#39735A" /></label>
+        <label><span data-i18n="organisationalWeight">Organisational weight</span><input name="weight" type="number" min="0.01" step="0.1" value="10" /></label>
+        <div class="modal__actions"><button type="button" class="button button--ghost" data-close-modal="addMemberModal" data-i18n="cancel">Cancel</button><button type="submit" class="button button--primary" data-i18n="addMemberParty">Add member party</button></div>
       </form>
     </div>
   </div>
@@ -398,6 +454,15 @@
     </div>
   </div>
 
+  <!-- Election detail -->
+  <div id="electionDetailModal" class="modal modal--archive" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal="electionDetailModal"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true">
+      <button class="modal__close" data-close-modal="electionDetailModal" aria-label="Close">×</button>
+      <div id="electionDetailContent"></div>
+    </div>
+  </div>
+
   <!-- Admin login -->
   <div id="adminLoginModal" class="modal" aria-hidden="true">
     <div class="modal__backdrop" data-close-modal="adminLoginModal"></div>
@@ -407,15 +472,9 @@
       <h2 data-i18n="administratorMode">Administrator mode</h2>
       <p class="muted" data-i18n="passwordHint">The password is stored in app.js.</p>
       <form id="adminLoginForm">
-        <label class="field">
-          <span data-i18n="password">Password</span>
-          <input id="adminPasswordInput" type="password" required />
-        </label>
+        <label class="field"><span data-i18n="password">Password</span><input id="adminPasswordInput" type="password" required /></label>
         <p id="adminLoginError" class="form-error" hidden data-i18n="incorrectPassword">Incorrect password.</p>
-        <div class="modal__actions">
-          <button type="button" class="button button--ghost" data-close-modal="adminLoginModal" data-i18n="cancel">Cancel</button>
-          <button type="submit" class="button button--primary" data-i18n="enter">Enter</button>
-        </div>
+        <div class="modal__actions"><button type="button" class="button button--ghost" data-close-modal="adminLoginModal" data-i18n="cancel">Cancel</button><button type="submit" class="button button--primary" data-i18n="enter">Enter</button></div>
       </form>
     </div>
   </div>
@@ -423,37 +482,28 @@
   <!-- Admin drawer -->
   <aside id="adminDrawer" class="admin-drawer" aria-hidden="true">
     <div class="admin-drawer__header">
-      <div>
-        <span class="admin-badge">ADMIN</span>
-        <h2 data-i18n="configuration">Election configuration</h2>
-        <p data-i18n="adminRealtime">Changes recalculate the simulation in real time.</p>
-      </div>
+      <div><span class="admin-badge">ADMIN</span><h2 data-i18n="configuration">Election configuration</h2><p data-i18n="adminRealtime">Changes recalculate the simulation in real time.</p></div>
       <button id="adminCloseBtn" class="icon-button" aria-label="Close">×</button>
     </div>
 
     <div class="admin-tabs">
-      <button class="admin-tab is-active" data-admin-tab="structure" data-i18n="listsAndMembers">Lists & members</button>
+      <button class="admin-tab is-active" data-admin-tab="structure" data-i18n="partiesAndLists">Parties & lists</button>
+      <button class="admin-tab" data-admin-tab="elections" data-i18n="electionArchiveAdmin">Election archive</button>
       <button class="admin-tab" data-admin-tab="listAffinities" data-i18n="listAffinities">List affinities</button>
       <button class="admin-tab" data-admin-tab="memberAffinities" data-i18n="memberAffinities">Member affinities</button>
       <button class="admin-tab" data-admin-tab="provinceProfiles" data-i18n="provinceProfiles">Province profiles</button>
       <button class="admin-tab" data-admin-tab="iberiaSplit" data-i18n="iberiaSplit">200-seat split</button>
       <button class="admin-tab" data-admin-tab="directAdjustments" data-i18n="directAdjustments">Direct adjustments</button>
       <button class="admin-tab" data-admin-tab="institutional" data-i18n="institutionalSenators">Institutional senators</button>
+      <button class="admin-tab" data-admin-tab="importSettings" data-i18n="uploadSettings">Upload settings</button>
       <button class="admin-tab" data-admin-tab="diagnostics" data-i18n="diagnostics">Diagnostics</button>
-      <button class="admin-tab" data-admin-tab="settingsBackup" data-i18n="settingsBackup">Settings backup</button>
     </div>
 
     <div id="adminContent" class="admin-drawer__content"></div>
 
     <div class="admin-drawer__footer">
-      <div>
-        <span id="adminChangeCount">0 unsaved changes</span>
-        <small data-i18n="storedLocally">Stored locally in this browser.</small>
-      </div>
-      <div class="admin-drawer__actions">
-        <button id="adminDiscardBtn" class="button button--ghost" data-i18n="discard">Discard</button>
-        <button id="adminSaveBtn" class="button button--primary" data-i18n="saveChanges">Save changes</button>
-      </div>
+      <div><span id="adminChangeCount">0 unsaved changes</span><small data-i18n="storedLocally">Stored locally in this browser.</small></div>
+      <div class="admin-drawer__actions"><button id="adminDiscardBtn" class="button button--ghost" data-i18n="discard">Discard</button><button id="adminSaveBtn" class="button button--primary" data-i18n="saveChanges">Save changes</button></div>
     </div>
   </aside>
   <div id="adminOverlay" class="drawer-overlay" hidden></div>
@@ -461,6 +511,6 @@
   <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
